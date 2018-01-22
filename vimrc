@@ -11,6 +11,7 @@ set autoread
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
+let g:jsx_ext_required = 0
 
 
 " :W sudo saves the file 
@@ -204,3 +205,12 @@ let g:airline_powerline_fonts = 1
 nmap <C-o> :NERDTreeToggle<CR>
 nmap <Tab> :bn<CR>
 nmap <C-x> :bd<CR>
+
+fun! CleanExtraSpaces()
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  silent! %s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfun
+
